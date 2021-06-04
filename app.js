@@ -1,13 +1,25 @@
 const searchButton = document.querySelector('#searchButton');
 const searchInput = document.querySelector('#searchInput');
-const addShow = document.querySelector('#addShow')
+const addShow = document.querySelector('#addShow');
 
 searchButton.addEventListener('click', (event) => {
   event.preventDefault();
-  const newShow = document.createElement('li')
-  newShow.append(searchInput.value)
-  addShow.append(newShow)
-  console.log(searchInput.value);
+  if (!addShow.childNodes[0]) {
+    displayShows();
+  } else {
+    removeShows(addShow.childNodes[0]);
+    displayShows();
+  }
 });
 
-// append input values as LI elements by adding blank UL to HTML
+const displayShows = () => {
+  const newShow = document.createElement('li');
+  newShow.append(searchInput.value);
+  addShow.append(newShow);
+};
+
+const removeShows = (shows) => {
+  shows.remove();
+};
+
+// when new value is appended to addShow, removes the previous elements
