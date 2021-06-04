@@ -1,1 +1,1 @@
-# VanillaTVMazeComponent
+# VanillaAPIGetComponentTemplate
