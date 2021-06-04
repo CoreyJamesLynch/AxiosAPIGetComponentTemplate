@@ -22,4 +22,12 @@ const removeShows = (shows) => {
   shows.remove();
 };
 
-// when new value is appended to addShow, removes the previous elements
+const getShows = async () => {
+  try {
+    const response = await axios.get('http://api.tvmaze.com/search/shows?q=girls');
+    console.log('Success, here is your request', response);
+  } catch (error) {
+    console.log("Something went wrong, here's the error", error);
+  }
+};
+// connect to API endpoint
