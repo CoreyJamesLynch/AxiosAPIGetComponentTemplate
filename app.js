@@ -15,6 +15,7 @@ searchButton.addEventListener('click', (event) => {
 const displayShows = (showImage, showInfo) => {
   const showSource = document.createElement('a');
   showSource.href = showInfo;
+  showSource.target = 'blank'
   const newShow = document.createElement('img');
   newShow.src = showImage;
   showSource.append(newShow);
@@ -40,4 +41,4 @@ const getShows = async () => {
     console.log("Something went wrong, here's the error", error);
   }
 };
-// Link each displayed poster to information corresponding to that show
+// Have each link open in a new tab
