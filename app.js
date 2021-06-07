@@ -14,8 +14,8 @@ searchButton.addEventListener('click', (event) => {
 
 const displayShows = (showImage) => {
   console.log("The current show image is", showImage)
-  const newShow = document.createElement('li');
-  newShow.append(showImage);
+  const newShow = document.createElement('img');
+  newShow.src = showImage
   addShow.append(newShow);
 };
 
@@ -37,4 +37,4 @@ const getShows = async () => {
     console.log("Something went wrong, here's the error", error);
   }
 };
-// Display data unique to user input to the page for the user to see
+// Display tv show images to user based on user's input value
