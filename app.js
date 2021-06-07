@@ -7,34 +7,33 @@ searchButton.addEventListener('click', (event) => {
   if (!addShow.childNodes[0]) {
     getShows();
   } else {
-    removeShows(addShow.childNodes[0]);
+    removeShows();
     getShows();
   }
 });
 
 const displayShows = (showImage) => {
-  console.log("The current show image is", showImage)
   const newShow = document.createElement('img');
-  newShow.src = showImage
+  newShow.src = showImage;
   addShow.append(newShow);
 };
 
-const removeShows = (shows) => {
-  shows.remove();
+const removeShows = () => {
+  while(addShow.lastElementChild){
+    addShow.removeChild(addShow.lastElementChild)
+  }
 };
 
 const getShows = async () => {
   try {
     const response = await axios.get(`http://api.tvmaze.com/search/shows?q=${searchInput.value}`);
 
-    for(show in response.data){
+    for (show in response.data) {
       const showImageMed = response.data[show].show.image.medium;
-      const showName = response.data[show].show.name;
-      console.log(`Here is the image for ${showName} ->`, showImageMed)
-      displayShows(showImageMed)
+      if (showImageMed) displayShows(showImageMed);
     }
   } catch (error) {
     console.log("Something went wrong, here's the error", error);
   }
 };
-// Display tv show images to user based on user's input value
+// Remove posters from previous searches on each new search.
