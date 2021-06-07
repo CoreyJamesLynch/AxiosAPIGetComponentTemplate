@@ -12,15 +12,18 @@ searchButton.addEventListener('click', (event) => {
   }
 });
 
-const displayShows = (showImage) => {
+const displayShows = (showImage, showInfo) => {
+  const showSource = document.createElement('a');
+  showSource.href = showInfo;
   const newShow = document.createElement('img');
   newShow.src = showImage;
-  addShow.append(newShow);
+  showSource.append(newShow);
+  addShow.append(showSource);
 };
 
 const removeShows = () => {
-  while(addShow.lastElementChild){
-    addShow.removeChild(addShow.lastElementChild)
+  while (addShow.lastElementChild) {
+    addShow.removeChild(addShow.lastElementChild);
   }
 };
 
@@ -30,10 +33,11 @@ const getShows = async () => {
 
     for (show in response.data) {
       const showImageMed = response.data[show].show.image.medium;
-      if (showImageMed) displayShows(showImageMed);
+      const showInfo = response.data[show].show.url;
+      displayShows(showImageMed, showInfo);
     }
   } catch (error) {
     console.log("Something went wrong, here's the error", error);
   }
 };
-// Remove posters from previous searches on each new search.
+// Link each displayed poster to information corresponding to that show
