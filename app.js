@@ -14,7 +14,7 @@ searchButton.addEventListener('click', (event) => {
 
 const displayShows = () => {
   const newShow = document.createElement('li');
-  newShow.append(searchInput.value);
+  newShow.append(getShows(searchInput.value));
   addShow.append(newShow);
 };
 
@@ -22,12 +22,12 @@ const removeShows = (shows) => {
   shows.remove();
 };
 
-const getShows = async () => {
+const getShows = async (show) => {
   try {
-    const response = await axios.get('http://api.tvmaze.com/search/shows?q=girls');
+    const response = await axios.get(`http://api.tvmaze.com/search/shows?q=${show}`);
     console.log('Success, here is your request', response);
   } catch (error) {
     console.log("Something went wrong, here's the error", error);
   }
 };
-// connect to API endpoint
+// use input value to query api
